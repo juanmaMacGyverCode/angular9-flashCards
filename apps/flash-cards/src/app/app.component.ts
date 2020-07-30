@@ -13,6 +13,9 @@ function getRandomNumber() {
 
 export class AppComponent {
   title = 'flash-cards';
+  editing = false;
+  editingId: number;
+
   flashs: IFlash[] = [{
     question: 'Question 1',
     answer: 'Answer 1',
@@ -34,4 +37,30 @@ export class AppComponent {
     return flash.id;
   }
 
+  handleToggleCard(id: number) {
+    const flash = this.flashs.find(flash => flash.id === id);
+    flash.show = !flash.show;
+  }
+
+  handleDelete(id: number) {
+    let fooId = 0;
+    this.flashs.forEach(element => {
+      if (element.id == id) {
+        fooId = element.id;
+      }
+    });
+    // Revisar porque esto está mal
+    //const flashId = this.flashs.indexOf(flash => flash.id === id);
+    const flashId = fooId;
+    this.flashs.splice(flashId, 1)
+  }
+  handleEdit(id: number) {
+    this.editing = true;
+    this.editingId = id;
+    // TODO: We will add editing logic after adding the form
+  }
+  handleRememeberedChange({ id, flag }) {
+    const flash = this.flashs.find(flash => flash.id === id);
+    flash.remembered = flag;
+  }
 }

@@ -8,7 +8,12 @@
 </header>
 <main>
   <div class="flashs">
-    <app-flash></app-flash>
+    <!--<app-flash></app-flash>
     <app-flash *ngFor="let flash of flashs; trackBy: trackByFlashId" [flash]="flash"></app-flash>
+    <app-flash *ngFor="let flash of flashs; trackByFlashId" [flash]="flash" (onToggleCard)="handleToggleCard($event)">
+    </app-flash>-->
+    <app-flash *ngFor="let flash of flashs; trackBy trackByFlashId" [flash]="flash"
+      (onToggleCard)="handleToggleCard($event)" (onDelete)="handleDelete($event)" (onEdit)="handleEdit($event)"
+      (onRememberedChange)="handleRememberedChange($event)"></app-flash>
   </div>
 </main>
