@@ -21,7 +21,10 @@
               "apps/flash-cards/src/favicon.ico",
               "apps/flash-cards/src/assets"
             ],
-            "styles": ["apps/flash-cards/src/styles.css"],
+            "styles": [
+              "apps/flash-cards/src/styles.css",
+              "./node_modules/bulma/css/bulma.min.css"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -79,7 +82,10 @@
               "apps/flash-cards/tsconfig.app.json",
               "apps/flash-cards/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/flash-cards/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/flash-cards/**/*"
+            ]
           }
         },
         "test": {
@@ -114,8 +120,13 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/flash-cards-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/flash-cards-e2e/**/*"]
+            "tsConfig": [
+              "apps/flash-cards-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/flash-cards-e2e/**/*"
+            ]
           }
         }
       }
@@ -123,7 +134,7 @@
   },
   "cli": {
     "defaultCollection": "@nrwl/angular",
-    "analytics": false
+    "analytics": "4e4edb29-9b65-46d8-ba67-c7950c08955a"
   },
   "schematics": {
     "@nrwl/angular:application": {
