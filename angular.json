@@ -1,0 +1,138 @@
+{
+  "version": 1,
+  "projects": {
+    "flash-cards": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "apps/flash-cards",
+      "sourceRoot": "apps/flash-cards/src",
+      "prefix": "flash-cards",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/flash-cards",
+            "index": "apps/flash-cards/src/index.html",
+            "main": "apps/flash-cards/src/main.ts",
+            "polyfills": "apps/flash-cards/src/polyfills.ts",
+            "tsConfig": "apps/flash-cards/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/flash-cards/src/favicon.ico",
+              "apps/flash-cards/src/assets"
+            ],
+            "styles": ["apps/flash-cards/src/styles.css"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/flash-cards/src/environments/environment.ts",
+                  "with": "apps/flash-cards/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "flash-cards:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "flash-cards:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "flash-cards:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/flash-cards/tsconfig.app.json",
+              "apps/flash-cards/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/flash-cards/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/flash-cards/jest.config.js",
+            "tsConfig": "apps/flash-cards/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "apps/flash-cards/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "flash-cards-e2e": {
+      "root": "apps/flash-cards-e2e",
+      "sourceRoot": "apps/flash-cards-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/flash-cards-e2e/cypress.json",
+            "tsConfig": "apps/flash-cards-e2e/tsconfig.e2e.json",
+            "devServerTarget": "flash-cards:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "flash-cards:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/flash-cards-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/flash-cards-e2e/**/*"]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular",
+    "analytics": false
+  },
+  "schematics": {
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    }
+  },
+  "defaultProject": "flash-cards"
+}
