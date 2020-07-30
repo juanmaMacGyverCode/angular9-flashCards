@@ -59,7 +59,7 @@ export class AppComponent {
     this.editingId = id;
     // TODO: We will add editing logic after adding the form
   }
-  handleRememeberedChange({ id, flag }) {
+  handleRememberedChange({ id, flag }) {
     const flash = this.flashs.find(flash => flash.id === id);
     flash.remembered = flag;
   }
